@@ -11,6 +11,16 @@ export type UpdateUserMutation = {
   >;
 };
 
+export type CreateCompanyMutationVariables = Types.Exact<{
+  input: Types.CreateOneCompanyInput;
+}>;
+
+export type CreateCompanyMutation = {
+  createOneCompany: Pick<Types.Company, "id"> & {
+    salesOwner: Pick<Types.User, "id">;
+  };
+};
+
 export type UpdateCompanyMutationVariables = Types.Exact<{
   input: Types.UpdateOneCompanyInput;
 }>;
@@ -30,15 +40,11 @@ export type UpdateCompanyMutation = {
   > & { salesOwner: Pick<Types.User, "id" | "name" | "avatarUrl"> };
 };
 
-export type CreateCompanyMutationVariables = Types.Exact<{
-  input: Types.CreateOneCompanyInput;
+export type UpdateTaskStageMutationVariables = Types.Exact<{
+  input: Types.UpdateOneTaskInput;
 }>;
 
-export type CreateCompanyMutation = {
-  createOneCompany: Pick<Types.Company, "id"> & {
-    salesOwner: Pick<Types.User, "id">;
-  };
-};
+export type UpdateTaskStageMutation = { updateOneTask: Pick<Types.Task, "id"> };
 
 export type CreateTaskMutationVariables = Types.Exact<{
   input: Types.CreateOneTaskInput;
@@ -65,12 +71,6 @@ export type UpdateTaskMutation = {
   };
 };
 
-export type UpdateTaskStageMutationVariables = Types.Exact<{
-  input: Types.UpdateOneTaskInput;
-}>;
-
-export type UpdateTaskStageMutation = { updateOneTask: Pick<Types.Task, "id"> };
-
 export type DashboardTotalCountsQueryVariables = Types.Exact<{
   [key: string]: never;
 }>;
@@ -84,7 +84,7 @@ export type DashboardTotalCountsQuery = {
 export type DashboardCalendarUpcomingEventsQueryVariables = Types.Exact<{
   filter: Types.EventFilter;
   sorting?: Types.InputMaybe<Array<Types.EventSort> | Types.EventSort>;
-  paging?: Types.InputMaybe<Types.OffsetPaging>;
+  paging: Types.OffsetPaging;
 }>;
 
 export type DashboardCalendarUpcomingEventsQuery = {
@@ -98,7 +98,7 @@ export type DashboardCalendarUpcomingEventsQuery = {
 export type DashboardDealsChartQueryVariables = Types.Exact<{
   filter: Types.DealStageFilter;
   sorting?: Types.InputMaybe<Array<Types.DealStageSort> | Types.DealStageSort>;
-  paging: Types.OffsetPaging;
+  paging?: Types.InputMaybe<Types.OffsetPaging>;
 }>;
 
 export type DashboardDealsChartQuery = {
@@ -122,7 +122,7 @@ export type DashboardDealsChartQuery = {
 export type DashboardLatestActivitiesDealsQueryVariables = Types.Exact<{
   filter: Types.DealFilter;
   sorting?: Types.InputMaybe<Array<Types.DealSort> | Types.DealSort>;
-  paging: Types.OffsetPaging;
+  paging?: Types.InputMaybe<Types.OffsetPaging>;
 }>;
 
 export type DashboardLatestActivitiesDealsQuery = {
@@ -139,7 +139,7 @@ export type DashboardLatestActivitiesDealsQuery = {
 export type DashboardLatestActivitiesAuditsQueryVariables = Types.Exact<{
   filter: Types.AuditFilter;
   sorting?: Types.InputMaybe<Array<Types.AuditSort> | Types.AuditSort>;
-  paging: Types.OffsetPaging;
+  paging?: Types.InputMaybe<Types.OffsetPaging>;
 }>;
 
 export type DashboardLatestActivitiesAuditsQuery = {
